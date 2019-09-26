@@ -1,30 +1,24 @@
 //Write a program to convert binary numbers to their decimal representation.
 
-
-using System;
-using System.Collections.Generic;
-
-class BinaryToDecimal
+static int BinaryToDec(string number)
 {
-    static void Main()
+    int result = 0;
+    int length = number.Length - 1;
+    for (int i = 0; i < number.Length; i++)
     {
-        Console.WriteLine("Please enter a binary number, using 0 and 1 only");
-        string bin = Console.ReadLine();
-        BinaryToDec(bin);
+        result += ((number[i] - '0') * ((int)Math.Pow(2, length)));
+        length--;
     }
-    static void BinaryToDec(string bin)
+    return result;
+}
+static string DecimalToBinary(int number) 
+{
+    string result = "";
+    for (int bitNum = 15; bitNum >= 0; bitNum--)
     {
-        int dec = 0;
-        int j = bin.Length - 1;
-
-        for (int i = 0; i < bin.Length; i++)
-        {
-            dec += ((bin[i] - '0') * ((int)Math.Pow(2, j)));
-            j--;
-        }
-
-        Console.WriteLine(dec);
+        int bitValue = (number >> bitNum) & 1;
+        result += bitValue;
     }
-
+    return result;
 }
 
